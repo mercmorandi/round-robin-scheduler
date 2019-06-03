@@ -23,6 +23,8 @@ class ThreadPool {
 
     unsigned int thread_count;
     SynchronizedQueue<std::function<Job()>> task_queue;
+    SynchronizedQueue<Job> job_queue;
+
     //SynchronizedQueue<std::function<void()>> task_queue2;
 
     SynchronizedQueue<Job> finishedJob;
@@ -43,6 +45,10 @@ public:
     void pushTask(std::function<Job()> func) {
      this->task_queue.put(func);
     }
+    void pushJob(Job& job) {
+      this->job_queue.put(job);
+    }
+
     /*void pushTask2(std::function<void()> func) {
       this->task_queue2.put(func);
     }*/
@@ -56,7 +62,7 @@ public:
     }
 
 
-
+    const SynchronizedQueue<Job> &getJobQueue() const;
 
     const SynchronizedQueue<std::function<Job()>> &getTaskQueue() const;
 

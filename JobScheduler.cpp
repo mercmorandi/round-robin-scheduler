@@ -26,7 +26,7 @@ void JobScheduler::start() {
   this->threadPool.initThreadPool();
 
   while(true){
-    if (waitingJobs.empty() && this->threadPool.getTaskQueue().getQueue().empty()){
+    if (waitingJobs.empty() && this->threadPool.getJobQueue().getQueue().empty()){
       this->threadPool.done = true;
       return;
     }
@@ -38,13 +38,15 @@ void JobScheduler::start() {
         //std::function<void()> f = std::move(doJob);
         std::lock_guard<std::mutex> lck(threadPool.mtx);
         //this->threadPool.pushTask(std::bind(job.doJob2(),job));
-        this->threadPool.pushTask(job());
+        //this->threadPool.pushTask(job());
+        this->threadPool.pushJob(job);
         threadPool.notified = true;
         threadPool.cv.notify_all();
       }else{
         this->waitingJobs.pop();
         std::lock_guard<std::mutex> lck(threadPool.mtx);
-        this->threadPool.pushTask(job());
+        //this->threadPool.pushTask(job());
+        this->threadPool.pushJob(job);
         //this->threadPool.pushTask(std::bind(&doJob2,job));
         threadPool.notified = true;
         threadPool.cv.notify_all();

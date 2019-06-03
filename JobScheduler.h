@@ -9,7 +9,7 @@
 #include <queue>
 #include "Job.h"
 
-static const int num_threads = 2;
+static const int num_threads = 3;
 
 
 

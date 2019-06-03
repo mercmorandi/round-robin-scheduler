@@ -48,11 +48,11 @@ Job Job::doJob2(Job job) const {
 }
 
 Job& Job::operator()() {
-  std::cout<<"sono dentro il thread job: "<<this->id<<std::endl;
+  //std::cout<<"sono dentro il thread job: "<<this->id<<std::endl;
   std::this_thread::sleep_for(std::chrono::seconds(3));
   this->execution_time += 3000;
   int remaining = this->duration - this->execution_time;
-  std::cout<<"remaining time: "<<remaining<<std::endl;
+  //std::cout<<">> threadremaining time: "<<remaining<<std::endl;
 
   return *this;
 }
