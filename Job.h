@@ -7,10 +7,14 @@
 
 #include <stdbool.h>
 #include <chrono>
+#include <iostream>
+#include <thread>
 
 
 class Job {
 public:
+
+    Job doJob2(Job job) const;
 
     long int id;
     //std::chrono::milliseconds startTime;
@@ -23,6 +27,7 @@ public:
     Job(long int id,  long int start_time, long int duration);
     Job(const Job& job);
     Job() = default;
+    Job& operator()();
     Job& operator=(const Job& job);
    // bool operator<(const Job& lhs, const Job& rhs);
     bool operator<(const Job& job) const;

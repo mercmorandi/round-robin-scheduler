@@ -4,4 +4,4 @@ project(round_robin_scheduler)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-add_executable(round_robin_scheduler main.cpp Job.cpp Job.h JobScheduler.cpp JobScheduler.h Worker.cpp Worker.h)
+add_executable(round_robin_scheduler main.cpp Job.cpp Job.h Worker.cpp Worker.h ThreadPool.cpp ThreadPool.h SynchronizedQueue.cpp SynchronizedQueue.h JobScheduler.cpp JobScheduler.h)

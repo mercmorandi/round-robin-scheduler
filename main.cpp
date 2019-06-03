@@ -4,7 +4,7 @@
 
 int main() {
   std::cout << "Hello, World!" << std::endl;
-  JobScheduler p{};
+  JobScheduler p;
   p.submit(Job(1, 0, 15000));
   p.submit(Job(2, 0, 6000));
   p.submit(Job(3, 1000, 9000));

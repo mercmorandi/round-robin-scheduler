@@ -11,7 +11,6 @@
 
 #include <thread>
 
-std::mutex getFreeWorkerMutex;
 
 class Worker {
 

@@ -39,3 +39,21 @@ bool Job::operator<(const Job &job) const {
   return this->start_time > job.start_time;
 }
 
+Job Job::doJob2(Job job) const {
+  std::cout<<"sono dentro il thread job: "<<job.id<<std::endl;
+  std::this_thread::sleep_for(std::chrono::seconds(3));
+  job.execution_time += 3000;
+  int remaining = job.duration - job.execution_time;
+  return job;
+}
+
+Job& Job::operator()() {
+  std::cout<<"sono dentro il thread job: "<<this->id<<std::endl;
+  std::this_thread::sleep_for(std::chrono::seconds(3));
+  this->execution_time += 3000;
+  int remaining = this->duration - this->execution_time;
+  std::cout<<"remaining time: "<<remaining<<std::endl;
+
+  return *this;
+}
+
